@@ -4,11 +4,9 @@ from fastapi import FastAPI, HTTPException
 import boto3
 from boto3.dynamodb.conditions import Key
 
-
 app = FastAPI()
 
 load_dotenv('.env')
-
 
 REGION_NAME = os.getenv('REGION_NAME')
 ACCESS_KEY = os.getenv('ACCESS_KEY')
@@ -20,8 +18,6 @@ def get_table():
     dynamodb = session.resource('dynamodb')
     table = dynamodb.Table(TABLE_NAME)
     return table
-
-
 
 @app.get("/")
 async def root():
