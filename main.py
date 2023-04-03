@@ -1,7 +1,7 @@
 import os
+import boto3
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
-import boto3
 from boto3.dynamodb.conditions import Key
 
 app = FastAPI()
@@ -23,7 +23,7 @@ def get_table():
 async def root():
     return {"message": "Hello world"}
 
-@app.get("/get-fare/{day}") #Hour optional
+@app.get("/get-fare/{day}") # /get-fare/day/hour is optional
 async def get_fare(day: str, hour: str = None):
     table = get_table()
     if hour:
